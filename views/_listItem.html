@@ -1,0 +1,22 @@
+<li
+  {% if !hasIt %}
+    class='list-group-item'
+  {% else %}
+    class='list-group-item list-group-item-success'
+  {% endif %}>
+  {{ text }}
+  {% if !hasIt %}
+  <form method='post' action='/trainerRegions/{{ trainer.id }}/{{region.id}}?backTo={{ backTo }}' style='display:inline'>
+    <button type='submit' class='btn btn-primary pull-right'>
+      Add to {{ addTo }} 
+    </button>
+  </form>
+  {% else %}
+  <form method='post' action='/trainerRegions/{{ trainer.id }}/{{region.id}}?backTo={{ backTo }}&_method=DELETE' style='display:inline'>
+    <button type='submit' class='btn btn-danger pull-right'>
+      Remove From {{ addTo }} 
+    </button>
+  </form>
+  {% endif %}
+  <br clear='all' />
+</li>

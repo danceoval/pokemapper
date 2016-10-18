@@ -1,0 +1,26 @@
+{% extends './layout.html' %}
+{% block content %}
+<div class='well'>
+  <form method='POST' action='/regions'>
+    <div class='form-group'>
+      <input class='form-control' name='loc' placeholder='enter location' />
+    </div>
+    <button type='submit' class='btn btn-primary'>Create Region</button>
+  </form>
+</div>
+
+{% for region in regions %}
+<div class='panel panel-default'>
+  <div class='panel panel-heading'>
+    {{ region.loc }}
+  </div>
+  <div class='panel-body'>
+    <ul class='list-group'>
+      {% for trainer in trainers %}
+      {% include './_listItem.html' with { text: trainer.name, addTo: 'Region', trainer: trainer, region: region, hasIt: region.hasTrainer(trainer.id), backTo: '/regions' } %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
